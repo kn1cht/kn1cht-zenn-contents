@@ -1,0 +1,23 @@
+{
+  "name": "kn1cht-zenn-contents",
+  "version": "1.0.0",
+  "description": "My articles on zenn.dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kn1cht/kn1cht-zenn-contents.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kn1cht/kn1cht-zenn-contents/issues"
+  },
+  "homepage": "https://zenn.dev/kn1cht",
+  "dependencies": {
+    "zenn-cli": "^0.1.50"
+  }
+}
