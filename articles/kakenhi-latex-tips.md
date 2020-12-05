@@ -6,7 +6,7 @@ topics:
   - latex
   - tex
   - academic
-published: false
+published: true
 ---
 
 この記事は、[TeX ＆ LaTeX Advent Calendar 2020](https://adventar.org/calendars/5111) 6日目の記事です。昨日の記事は、doraTeXさんの[帳票生成ツールとしての LaTeX の活用](https://doratex.hatenablog.jp/entry/20201205/1607102432)でした。
@@ -21,16 +21,19 @@ https://adventar.org/calendars/5111
 
 ## はじめに
 ### 科研費LaTeXとは
-学振特別研究員（DC1・DC2・PDなど）の申請には、所定の様式を使って作成した**申請書内容ファイル**（以下、申請書）が必要です。公式から配布されているものはWordとPDFだけですが、サポート対象外という注記付きで、LaTeX版の様式も公式に紹介されています。それが、本記事で扱う「[**科研費LaTeX**](http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/)」です。「科研費」という名前ではあるものの、特別研究員と科学研究費療法の申請で使えるテンプレートになっています。
+学振特別研究員（DC1・DC2・PDなど）の申請には、所定の様式を使って作成した**申請書内容ファイル**（以下、申請書）が必要です。公式から配布されているものはWordとPDFだけですが、サポート対象外という注記付きで、LaTeX版の様式も公式に紹介されています。それが、本記事で扱う「[**科研費LaTeX**](http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/)」です。「科研費」という名前ではあるものの、特別研究員と科学研究費両方の申請で使えるテンプレートが配布されています。
 
 http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/
 
+Advent Calendar 5日目の記事では「[既存PDFを下敷きにして上から文字を貼り込む](https://doratex.hatenablog.jp/entry/20201205/1607102432#%E6%97%A2%E5%AD%98PDF%E3%82%92%E4%B8%8B%E6%95%B7%E3%81%8D%E3%81%AB%E3%81%97%E3%81%A6%E4%B8%8A%E3%81%8B%E3%82%89%E6%96%87%E5%AD%97%E3%82%92%E8%B2%BC%E3%82%8A%E8%BE%BC%E3%82%80)」という帳票作成方法が紹介されていました。科研費LaTeXもこの方針で作られていて、**枠や注意書きの部分は学振の公式テンプレートと同じ見た目**です。所属機関の事務から見た目がおかしいと指摘されにくくなっています。
+
+### 科研費LaTeXを使うとなぜ嬉しいか
 特別研究員の様式は、**記入欄が全て枠で囲まれ、サイズなどを変更してはいけない**ことになっています。この枠は記入すべき内容に対してギリギリの大きさなので、多くの申請者は隙間なく文字や図を詰め込んで提出します。これをWordで作成しようとすると、枠のズレや画像の配置の微調整といった難しい作業が必要になります。
 
 ![筆者の申請書のとあるページ](https://storage.googleapis.com/zenn-user-upload/pmensoj80v1xbenehrbuzkergc78 =250x)
 *筆者の申請書のとあるページ*
 
-科研費LaTeXを学振申請に使うメリットには以下が挙げられます。
+従って、科研費LaTeXを学振申請に使うメリットには以下が挙げられます。
 
 1. **レイアウトに割く労力を軽減**し、内容に集中できる
 1. **図表や参考文献を挿入・参照**するのにLaTeXの機能を使える
@@ -330,7 +333,7 @@ https://takehikom.hateblo.jp/entry/20131010/1381351482
 }
 ```
 
-![サンプルの「研究遂行能力」欄で使った例](https://storage.googleapis.com/zenn-user-upload/4vomzj2tym96g4uetcmcout6c3yh =450x)
+![サンプルの「研究遂行能力」欄で使った例](https://storage.googleapis.com/zenn-user-upload/4vomzj2tym96g4uetcmcout6c3yh =400x)
 *サンプルの「研究遂行能力」欄で使った例*
 
 ### 業績一覧の空きスペースをなるべく詰める
@@ -349,7 +352,7 @@ http://konoyonohana.blog.fc2.com/blog-entry-58.html
 \setlist[enumerate]{leftmargin=5truemm,noitemsep,topsep=3pt}
 ```
 
-![enumerate環境の書式を調整した例](https://storage.googleapis.com/zenn-user-upload/209lf1keufxi6z6265g9xmgb1dit =450x)
+![enumerate環境の書式を調整した例](https://storage.googleapis.com/zenn-user-upload/209lf1keufxi6z6265g9xmgb1dit =400x)
 *`enumerate`環境の書式を調整した例*
 
 たくさん業績が入りそうです。
@@ -363,7 +366,7 @@ http://konoyonohana.blog.fc2.com/blog-entry-58.html
 ## PDF出力
 ### PDFを自動でグレースケールに変換する
 
-学振の申請書は（そして科研費の書類も）**審査時にはグレースケール印刷されます**。従って、申請者の皆様は図表がグレースケールでも読み取れるように工夫して申請書を仕上げます。
+学振の申請書は（そして科研費の書類も）**審査時にはグレースケール印刷されます**。従って、図表がグレースケールでも読み取れるように工夫して申請書を仕上げることが大切です。
 
 グレースケールでの見た目を確認するには、PDFビューワでグレースケールに変換したり、実際にグレースケールで印刷したりといった方法も当然あります。しかし、**LaTeXでコンパイルしたPDFをグレースケールに自動で変換**すれば、これらの作業が不要になります。
 
