@@ -1,0 +1,29 @@
+{
+  "plugins": ["html", "latex2e"],
+  "rules": {
+    "ja-hiragana-fukushi": true,
+    "ja-hiragana-hojodoushi": true,
+    "no-mixed-zenkaku-and-hankaku-alphabet": true,
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": {
+      "max-kanji-continuous-len": {
+        max: 8,
+        allow: ["倍精度浮動小数点数"]
+      },
+      "no-exclamation-question-mark" : false,
+      "no-hankaku-kana": false,
+      "no-doubled-joshi": false, //preset-japaneseと重複のため
+      "sentence-length": false //preset-japaneseと重複のため
+    },
+    "preset-japanese": {
+      "no-doubled-joshi": {
+        "min_interval" : 1,
+        "allow": [ "が" ]
+      },
+      "sentence-length" : {
+        "max": 150
+      }
+    },
+    "preset-jtf-style": true
+  }
+}
