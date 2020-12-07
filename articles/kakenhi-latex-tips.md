@@ -388,4 +388,4 @@ macOSやLinuxなどのGhostscriptのコマンドは`gs`なのに対し、Windows
 
 -----
 
-明日のTeX ＆ LaTeX Advent Calendar 2020は、CareleSmith9さんのmathabxパッケージの記事です。
+明日のTeX ＆ LaTeX Advent Calendar 2020は、CareleSmith9さんの「[LaTeX の数式でイイ感じに惑星記号を使う](http://circle9tym.blog.fc2.com/blog-entry-378.html)」です。
