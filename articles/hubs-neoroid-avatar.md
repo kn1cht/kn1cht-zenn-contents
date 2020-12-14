@@ -8,7 +8,7 @@ topics:
   - モデリング
   - hubs
   - NeosVR
-published: false
+published: true
 ---
 
 この記事は、[**NeosVR Advent Calendar 2020**](https://adventar.org/calendars/5277)および[**Hubs Advent Calendar 2020**](https://qiita.com/advent-calendar/2020/hubs) 12日目の記事です。
@@ -51,7 +51,7 @@ https://note.com/sirojake/n/n2a1ef10a23af
 
 @[youtube](cvxqFEYkF1A)
 
-## NeoroidアバターをHubsでも使いたい
+## NeoRoidアバターをHubsでも使いたい
 
 Twitterなどで何度かNeoRoidアバターを拝見して、「これはHubsで使うのにもピッタリなのでは？」と感じていました。なぜなら、NeoRoidアバターは **「頭・胴体・両手パーツのみ」「ポリゴン・マテリアルが軽量」** というHubsアバターとして望ましい特徴を既に備えているからです。
 
@@ -99,7 +99,7 @@ NeoRoidクリエーターはNeos VRにありますので、Neos VRが必要…�
 
 ※ NeoRoid Hubに登録されたアバターはCC0、パブリック・ドメイン相当です
 
-と、これで終わらせたらNeos界隈の方に殴られそうなので、ちゃんとNeos VRのチュートリアルを受けてNeoRoidクリエーターへ行ってきました。ここでもNeoRoid Hubのアバターを閲覧したり、その場で着替えたりできます。
+~~と、これで終わらせたらNeos界隈の方に殴られそうなので~~ 、ちゃんとNeos VRのチュートリアルを受けてNeoRoidクリエーターへ行ってきました。ここでもNeoRoid Hubのアバターを閲覧したり、その場で着替えたりできます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/tfyityijeu1kq5wvu867hsejvtie)
 
@@ -168,7 +168,7 @@ Hubsでは指を動かすこともできるものの、NeoRoidには指がない
 
 **HubsでもNeoRoidできました**。
 
-「Hubsはブラウザだし、できることが少ないのでは？」と感じる方は多いかもしれません（実際にアバターの表現力はVRChat等にかないません）。ただ、Webブラウザで動くという無視できないメリットがあります。学会やカンファレンスなど、**参加の障壁を極力なくしたいオンラインイベント**での利用が増えていくことでしょう。
+「Hubsはブラウザだし、できることが少ないのでは？」と感じる方は多いかもしれません（実際にアバターの表現力はVRChat等にかないません）。ただ、Webブラウザで動くという無視できないメリットがあります。学会やカンファレンスなど、**参加の障壁を極力なくしたいオンラインイベント**での利用が増えていくことでしょう（先日のXRKaigiでも、バーチャル会場としてHubsが採用されました）。
 
 Hubsを使う必要が生じたとき、**自分好みの外観のアバターを気軽に持ち込める方法**の1つとしてNeoRoidは有効だと感じました。
 
