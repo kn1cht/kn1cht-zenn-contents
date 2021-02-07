@@ -10,6 +10,14 @@
         max: 8,
         allow: ["倍精度浮動小数点数"]
       },
+      "ja-no-redundant-expression" : {
+        allows : [
+          "/^分析を行[ぁ-ん]/",
+          "/^処理を行[ぁ-ん]/",
+          "/^[ァ-ヶ]+を.?行[ぁ-ん]/",
+          "/^[a-zA-Z]+を.?行[ぁ-ん]/",
+        ]
+      },
       "no-exclamation-question-mark" : false,
       "no-hankaku-kana": false,
       "no-doubled-joshi": false, //preset-japaneseと重複のため
@@ -25,5 +33,8 @@
       }
     },
     "preset-jtf-style": true
+  },
+  "filters": {
+    "comments": true
   }
 }
