@@ -281,6 +281,6 @@ Apple WatchのECG測定時間は30秒なので、この基準に遠く及びま�
 [^4]: Task Force of the European Society Electrophysiology, "Heart Rate Variability: Standards of Measurement, Physiological Interpretation, and Clinical Use," Circulation, vol. 93, no. 5, pp. 1043–1065, Mar. 1996. https://www.ahajournals.org/doi/10.1161/01.CIR.93.5.1043
 <!-- textlint-enable-->
 
-## おわりに
+# おわりに
 
 Apple Watchで測定したECGデータをPythonに読み込み、心電波形の確認や心電指標の算出をしてみました。一度自分のECGデータをあれこれ分析してみると、iPhoneでなんとなく波形を眺めるだけよりもさらに測定できている実感が湧くのではないでしょうか。
