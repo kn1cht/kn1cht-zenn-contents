@@ -34,7 +34,7 @@ Apple Watchで測定したECGは、心臓に異常を感じている方にとっ
 
 @[tweet](https://twitter.com/h_okumura/status/1354290945512988673)
 
-ECG機能の国内リリース直後に、三重大学の奥村先生が**ECGデータをPythonに読み込んでプロット**した様子をツイートされていました。約512 Hzで30秒間の測定データを、数値データとして得られるようです。本記事では、この数値データを使って、Pythonライブラリ`biosppy`による簡単なECGデータ分析を行ってみます。
+ECG機能の国内リリース直後に、三重大学の奥村先生が**ECGデータをPythonに読み込んでプロット**した様子をツイートされていました。約512 Hzで30秒間の測定データを、数値データとして得られるようです。本記事では、この数値データを使って、Pythonライブラリ`BioSPPy`による簡単なECGデータ分析を行ってみます。
 
 # ECGの測定とデータの取り出し
 
@@ -116,7 +116,7 @@ plt.show()
 ![](https://storage.googleapis.com/zenn-user-upload/js9ch193wuuotmzb7sm0imsnp5zg)
 
 ECGの波形には、P波～U波までの名称が付けられています。もっとも高く鋭いピークはR波と呼ばれ、**心臓が血液を送り出すタイミング**を示します。
-R波から次のR波までの間隔を**RR間隔（R-R Interval; RRI）**といい、心拍数などの計算に用いられます。
+R波から次のR波までの間隔を **RR間隔（R-R Interval; RRI）** といい、心拍数などの計算に用いられます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/eftftektcury37lo50b56qc4ss7p =350x)
 
