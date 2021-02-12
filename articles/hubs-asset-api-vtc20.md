@@ -6,7 +6,7 @@ topics:
   - vr
   - hubs
   - firebase
-published: false
+published: true
 ---
 
 この記事は、[**Hubs Advent Calendar 2020**](https://qiita.com/advent-calendar/2020/hubs) 11日目の記事です（大遅刻すみません）。
@@ -20,7 +20,7 @@ https://qiita.com/advent-calendar/2020/hubs
 - **Googleスプレッドシートを更新するだけ**で、迅速にメディアの設置・差し替えが完了します
 - Google Firebase用のコードを公開しています
 
-[![](https://storage.googleapis.com/zenn-user-upload/n0bt3leahwj58rkjpqiokfemyuiz =350x)](https://github.com/kn1cht/hubs-asset-api-firebase)
+[![](https://storage.googleapis.com/zenn-user-upload/n0bt3leahwj58rkjpqiokfemyuiz =420x)](https://github.com/kn1cht/hubs-asset-api-firebase)
 
 # はじめに
 
@@ -61,7 +61,7 @@ Hubsでは、**画像・動画・PDFなどのメディアやWebページへの�
 ![](https://storage.googleapis.com/zenn-user-upload/xikh29n3jwyxy1w4a3iu67erqw9x)
 
 
-あたかもメディアがVRに取り込まれたように見えいますが、HubsはWebベースの技術でできているので、VR内で見えている**画像や動画はそれぞれWebリンク**です。その証拠に、TabキーかSpaceキーホールドでメディアのメニューを開くと、`Open link`ボタンからファイル自体のURLに飛べます。
+あたかもメディアがVRに取り込まれたように見えていますが、HubsはWebベースの技術でできているので、VR内で見えている**画像や動画はそれぞれWebリンク**です。その証拠に、TabキーかSpaceキーホールドでメディアのメニューを開くと、`Open link`ボタンからファイル自体のURLに飛べます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/rs7hryn5cd07eadhvfnmdlewwzq1 =500x)
 *`Open link`ボタン*
@@ -71,7 +71,7 @@ SlackやDiscordなどでも、画像のURLを貼り付けたらプレビュー�
 ![](https://storage.googleapis.com/zenn-user-upload/zu7ayn47e6uouffdwzlka1gb8snj)
 *どちらもWebリンク先のプレビューという点では同じ*
 
-Hubsでは、Hubsサーバでアップロードしたもの以外のURLを貼ってもメディアとして展開されます。これは、**Webで公開されているURLさえあれば、どこにある画像を貼ってもVR内で表示される**ということです。
+Hubsでは、Hubsサーバでアップロードしたもの以外のURLを貼ってもメディアとして展開されます。これは、**Webで公開されているURLさえあれば、どこにあるメディアを貼ってもVR内で表示される**ということです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/gxtgbb5482dn6norrhm3tzrp0dai)
 *github.comでホストされている画像ファイルを貼り付けた様子*
@@ -102,7 +102,7 @@ hubs-asset-apiでは、Firebaseの機能のうち、URLへのアクセスなど�
 
 https://github.com/kn1cht/hubs-asset-api-firebase で公開しているコードについて説明します。いろいろとファイルがありますが、Firebaseプロジェクトに必要な設定ファイル等がほとんどで、ソースコード自体は`functions/index.js`と`functions/store.js`だけです。
 
-[![](https://storage.googleapis.com/zenn-user-upload/n0bt3leahwj58rkjpqiokfemyuiz =350x)](https://github.com/kn1cht/hubs-asset-api-firebase)
+[![](https://storage.googleapis.com/zenn-user-upload/n0bt3leahwj58rkjpqiokfemyuiz =420x)](https://github.com/kn1cht/hubs-asset-api-firebase)
 
 ### index.js
 
@@ -204,3 +204,51 @@ Firebaseプロジェクトをデプロイしたら完了です。ダミーのURL
 $ firebase deploy
 ```
 
+# APIを使ってみよう
+## リダイレクト可能なファイル
+
+Cloud FunctionsのURLは`https://{リージョン}-{プロジェクトID}.cloudfunctions.net/{Fuction名}`のようになっています（Firebaseコンソールでも確認できます）。Googleスプレッドシートに好きなダミーファイル名を入力したら、ダミーファイル名を付けたURLを開き、リダイレクトされるか確認しておきましょう。
+
+![](https://storage.googleapis.com/zenn-user-upload/7g3djuyefdmvhhokfhhpvvl3to1b)
+*GLBファイルをhubs-asset-apiのリダイレクト経由で読み込んだ様子*
+
+Hubsに表示されるメディアは、**2D画像から3Dモデルまで全てがURL**です。従って、公開のURLでアクセスできるファイルならなんでもhubs-asset-apiで外部から管理できます。
+
+## ファイルを実際にはどこに置いておくか？
+
+実体URLにリダイレクト～と何度も言ってきましたが、ファイルの本体はどこにアップロードすればよいのでしょうか？
+
+### HubsかSpokeでアップロードする
+
+Hubsの画面にファイルをドラッグ&ドロップすると、Hubsのサーバ（Mozillaであれば https://uploads-prod.reticulum.io です）へファイルがアップロードされます。「Open Link」ボタンからURLを開き、コピーしてスプレッドシートに貼り付ければOKです。
+
+![](https://storage.googleapis.com/zenn-user-upload/v6gfkg1akh2orp95dj2mfccgk1f5)
+*Spokeにログインしてアップロードしたファイルは、画面下部の「My Assets」で後から参照できる*
+
+### 独自のサーバに設置する
+
+多くの人から画像や動画を収集するような場合は、いちいちHubsを開いてアップロードすると手間が多くなります。自由に使えるサーバ（クラウドのインスタンスでもOK）をお持ちなら、アップロードシステムを独自に用意するのもいいでしょう。
+
+### アップローダーを使う
+
+自前でサーバを用意できない場合は、**ファイルへの直リンク**を許可しているアップローダーを使うこともできます。例えば画像ファイルなら[imgur](https://imgur.com/)や[Gyazo](https://gyazo.com/)が有名どころです。
+
+# 応用のアイデア
+
+現状のhubs-asset-apiは、Googleスプレッドシートに手動でURLを書き込む使い方を想定しています。ただ、リダイレクト先のURLを返すまでの間は好きな処理ができるので、実装次第でいろいろな応用が可能でしょう。
+
+- 時間指定で、**自動的にメディアを更新**する
+    - 例えば、数日間に渡るイベントで、タイムテーブルの画像を自動で1日おきに差し替えるなど
+- **メディア自体を自動生成**して返す
+    - アクセスカウンターとか実装できそうです（Hubsで使いたい人がいるのか分かりませんが）
+    - 外部のAPIを呼び出して反映する、ユーザごとにランダムな内容を読み込ませるなどもできます
+
+なお、hubs-asset-apiの方法ではHubsルームをすでに読み込んだ後でファイルを書き換えても、**ユーザがページを再読み込みするまで反映されません**。秒単位、分単位で最新にしなければならない情報には使えませんのでご注意ください。
+
+# おわりに
+
+hubs-asset-apiは、Hubs内のメディアを外部から書き換え可能にするWeb APIです。筆者の所属する研究室では、実際にHubsでの研究発表で資料を設置するのにAPIを利用しており、Hubsに直接配置するのに比べて圧倒的に作業が楽になりました。
+
+**Hubs内のメディアは全て公開のURLから読み込まれている**という話を記事中に書きましたが、筆者はこのオープンさが好きです（アセットやアバターを絶対他人にコピーされたくない人には悲報かもしれませんが）。
+
+Hubs開発者の記事「[The Secret Mozilla Hubs Master Plan](https://gfodor.medium.com/the-secret-mozilla-hubs-master-plan-2c1364033bec)」では、World Wide Web（WWW）の原則を守り、既存のWebに組み込む形でHubsを開発していくと宣言しています。Webの思想を守っているからこそ柔軟に色々な工夫ができる点は、Hubsの大きな魅力の1つではないでしょうか。
