@@ -24,10 +24,15 @@ https://adventar.org/calendars/5111
 
 http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/
 
-Advent Calendar 5日目の記事では「[既存PDFを下敷きにして上から文字を貼り込む](https://doratex.hatenablog.jp/entry/20201205/1607102432#%E6%97%A2%E5%AD%98PDF%E3%82%92%E4%B8%8B%E6%95%B7%E3%81%8D%E3%81%AB%E3%81%97%E3%81%A6%E4%B8%8A%E3%81%8B%E3%82%89%E6%96%87%E5%AD%97%E3%82%92%E8%B2%BC%E3%82%8A%E8%BE%BC%E3%82%80)」という帳票作成方法が紹介されていました。科研費LaTeXもこの方針で作られていて、**枠や注意書きの部分は学振の公式テンプレートと同じ見た目**です。所属機関の事務から見た目がおかしいと指摘されにくくなっています。
+Advent Calendar 5日目の記事では「[既存PDFを下敷きにして上から文字を貼り込む](https://doratex.hatenablog.jp/entry/20201205/1607102432#%E6%97%A2%E5%AD%98PDF%E3%82%92%E4%B8%8B%E6%95%B7%E3%81%8D%E3%81%AB%E3%81%97%E3%81%A6%E4%B8%8A%E3%81%8B%E3%82%89%E6%96%87%E5%AD%97%E3%82%92%E8%B2%BC%E3%82%8A%E8%BE%BC%E3%82%80)」という帳票作成方法が紹介されていました。科研費LaTeXもこの方針で作られていて、**注意書きの部分は学振の公式テンプレートと同じ見た目**です。所属機関の事務から見た目がおかしいと指摘されにくくなっています。
 
 ### 科研費LaTeXを使うとなぜ嬉しいか
-特別研究員の様式は、**記入欄が全て枠で囲まれ、サイズなどを変更してはいけない**ことになっています。この枠は記入すべき内容に対してギリギリの大きさなので、多くの申請者は隙間なく文字や図を詰め込んで提出します。これをWordで作成しようとすると、枠のズレや画像の配置の微調整といった難しい作業が必要になります。
+特別研究員の様式は、**ページ数を変更・追加してはいけない**ことになっており、多くの申請者は隙間なく文字や図を詰め込んで提出します。これをWordで作成しようとすると、ページのズレや画像の配置の微調整といった難しい作業が必要になります。
+
+:::message
+（2021年2月追記）以前の様式は変更不可能な枠で囲まれていましたが、2021年度春の申請分からは枠がなくなりました。
+
+:::
 
 ![筆者の申請書のとあるページ](https://storage.googleapis.com/zenn-user-upload/pmensoj80v1xbenehrbuzkergc78 =250x)
 *筆者の申請書のとあるページ*
@@ -41,7 +46,7 @@ Advent Calendar 5日目の記事では「[既存PDFを下敷きにして上か�
 
 科研費LaTeXは、大阪大学の山中卓先生が[2006年から](http://www.kagami.org/diary/2006-10-16-1.html)継続してメンテナンスしてくださっているものです。最新の様式を快適に使えることに感謝しながら申請書を作成しましょう。
 
-@[tweet](https://twitter.com/taku_ymnk/status/1234412367682752513)
+@[tweet](https://twitter.com/taku_ymnk/status/1360136655487737857)
 
 ### 科研費LaTeXの情報源
 - [科研費LaTeX FAQ](http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/faq.html)
@@ -62,6 +67,10 @@ Advent Calendar 5日目の記事では「[既存PDFを下敷きにして上か�
 - Editor: Visual Studio Code
 
 ## 見出しを作ろうと思って`\subsection`, `\subsubsection`を書いても表示されない
+
+2021年度版の様式からは、項目の枠がなくなったことに伴い**見出しコマンド（`\subsection`, `\subsubsection`）が使えるようになりました**。従って、本節は古い情報となります。ご興味があれば折りたたみから御覧ください。
+
+:::details 2020年に書いていた内容
 
 ### 現象
 
@@ -153,27 +162,29 @@ LaTeXの見出しコマンドを使い、文章の構造を整理したくなる
 ![あえて空行を入れずにスペース節約](https://storage.googleapis.com/zenn-user-upload/6pa5hlyfr080dc77a00rz4ha6q9o)
 *あえて空行を入れずにスペース節約*
 
+:::
+
 ## 見出しに網掛けする
 
 Wordで申請書を作る方に多いのが、**見出しを網掛けで強調する**やり方です。**グレースケールで印刷**され、欄も限られている学振書類では、色や余白を使わずに見出しを目立たせる方法として有効です。
 
-LaTeXではズバリ網掛けをするコマンドはないので、自分で組み立てる必要があります。いくつか方法はあるようですが、ここではcolorパッケージに含まれる[`\colorbox`コマンドを使った方法](https://www.lightstone.co.jp/latex/betteruse/shading.pdf)を用います。先ほど作った`\mysubsection`を書き換えて、網掛けバージョンにしたものがこちらです。
+LaTeXではズバリ網掛けをするコマンドはないので、自分で組み立てる必要があります。いくつか方法はあるようですが、ここではcolorパッケージに含まれる[`\colorbox`コマンドを使った方法](https://www.lightstone.co.jp/latex/betteruse/shading.pdf)を用います。
+毎回colorboxを宣言するのは面倒なので、`\mysubsection`のようなコマンドを定義して使い回すのがおすすめです。
 
 ```latex:dc.tex
 \usepackage{color}
 
-\newcommand{\mysubsection}[1]{\noindent\subsection*{\colorbox[gray]{0.8}{\textbf{#1}}}}
-\newcommand{\mysubsubsection}[1]{\noindent\textbf{#1}}
+\newcommand{\mysubsection}[1]{\subsection{\colorbox[gray]{0.8}{#1}}}
 ```
 
-![網掛けした見出し](https://storage.googleapis.com/zenn-user-upload/fss39kqmbsrzjhqpuo00mydtdgo4)
+![網掛けした見出し](https://storage.googleapis.com/zenn-user-upload/mid6prd5odlsf9pgofgk63a667ky)
 *網掛けした見出し*
 
 見出しが一目で判別できるようになりました。
 
 ## 丸数字を使う
 
-番号をつけて何かを列挙したい場合、通常は番号付き箇条書きを用います。ただし、学振申請書では枠に限りがあるため、仕方なく数字（①、②、......）を使って文章中で列挙をせざるを得ないこともあります。
+番号をつけて何かを列挙したい場合、通常は番号付き箇条書きを用います。ただし、学振申請書ではスペースに限りがあるため、仕方なく数字（①、②、......）を使って文章中で列挙をせざるを得ないこともあります。
 
 [科研費LaTeX FAQ](http://osksn2.hep.sci.osaka-u.ac.jp/~taku/kakenhiLaTeX/faq.html)では`\textcircled`コマンドが紹介されています。これでも表示できるものの、数字が円の中心からズレてしまいます。
 
@@ -192,7 +203,7 @@ LaTeXではズバリ網掛けをするコマンドはないので、自分で組
 ## 複数箇所の`\thebibliography`環境で文献番号を連続にする
 
 学振申請書で関連研究に言及する場合は、論文と同様に**適切な引用**を書かなければなりません。
-学振では欄が分かれているのでどのように引用を書くかの戦略は複数考えられます。
+学振では欄が分かれているので、どのように引用を書くかの戦略は複数考えられます。
 筆者は次のようにしました。
 
 1. 文献を`[1], [2], ......`という番号で管理し、**最初に言及した欄の下部にまとめて記載**する
@@ -277,7 +288,7 @@ http://math.shinshu-u.ac.jp/~nu/html/texmacros/mycc/
 
 ## 自分の業績を参照するときは別の記号で参照する
 
-申請書では、「**研究遂行能力**」欄で申請者のこれまでの主要な業績を並べることになります。こちらも番号を付けるわけですが、**関連研究と自分の業績とで記号を分けておく**と、万が一の誤読を防げます。
+申請書では、「**研究遂行能力（2021年度申請分からは、研究遂行力の自己分析）**」欄で申請者のこれまでの主要な業績を並べることになります。こちらも番号を付けるわけですが、**関連研究と自分の業績とで記号を分けておく**と、万が一の誤読を防げます。
 
 現在の科研費LaTeXには、研究業績を参照するための独自コマンド`\KLcite`が実装されています。素の状態では`\cite`コマンド同様`[番号]`で参照されます。そこで、[こちらのブログ](https://takehikom.hateblo.jp/entry/20131010/1381351482)を参考に`\KLcite`を再定義して**好きな記号で業績を参照できるように**します。
 
@@ -293,6 +304,10 @@ https://takehikom.hateblo.jp/entry/20131010/1381351482
 
 `\KLciteii`、`\KLciteiii`はそれぞれ2つ・3つの業績を並べたい場合には必要です。掲示板で山中先生が[回答](http://www.cml-office.org/kakenhibbs/msg.php?mid=1423&form=tree)されている通り、`\KLcite`は1つの引数を`\ref`に渡して書式を変えるだけで、複数並べる機能を持たないためです。
 
+:::message alert
+なお、`\ref`コマンドでは`\bibitem`で宣言した文献を参照できないため、業績を記述するには`\label`コマンドや後述の改造版`\KLbibitem`コマンドをセットで使う必要があります。
+
+:::
 
 ## 業績一覧の番号つきリストの見た目を整える
 
@@ -316,25 +331,19 @@ https://takehikom.hateblo.jp/entry/20131010/1381351482
 使う際には、`\item`を`\KLbibitem{ラベル}`に置き換えるだけです。独自のカウンタを使っているので、**mycc.styで工夫しなくとも複数の箇条書きの間で通し番号になる**のも嬉しいところです。
 
 ```latex:dc_08_publications.tex
-\subsection{学術雑誌等又は商業誌における解説・総説}
-\newcommand{\学術雑誌等または商業誌における解説や総説}{%
-%begin  学術雑誌等または商業誌における解説や総説＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-  \begin{enumerate}
-    \KLbibitem{yukawa2003} R.~Kipling, \underline{H. Yukawa},
-        ``The Elephant's Child (象の鼻はなぜ長い)'',
-        Nature, {\bf 999}, 777-779, (2003).
-  \end{enumerate}
-  他２件
-%end  学術雑誌等または商業誌における解説や総説 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-}
+\begin{enumerate}
+  \KLbibitem{yukawa2003} R.~Kipling, \underline{H. Yukawa},
+      ``The Elephant's Child (象の鼻はなぜ長い)'',
+      Nature, {\bf 999}, 777-779, (2003).
+\end{enumerate}
 ```
 
 ![サンプルの「研究遂行能力」欄で使った例](https://storage.googleapis.com/zenn-user-upload/4vomzj2tym96g4uetcmcout6c3yh =400x)
-*サンプルの「研究遂行能力」欄で使った例*
+*サンプルの「研究遂行能力」欄で使った例（※2020年度申請までの様式です）*
 
 ## 業績一覧の空きスペースをなるべく詰める
 
-ただし、デフォルトの箇条書き環境は少し隙間が多いです。科研費LaTeXについてきたサンプルでも欄からあふれてしまっています。箇条書き環境の見た目を柔軟に設定できる[`enumitem`パッケージを使ってレイアウトを調整](https://konoyonohana.blog.fc2.com/blog-entry-58.html)しましょう。
+デフォルトの箇条書き環境は少し隙間が多いです。箇条書き環境の見た目を柔軟に設定できる[`enumitem`パッケージを使ってレイアウトを調整](https://konoyonohana.blog.fc2.com/blog-entry-58.html)しましょう。
 
 http://konoyonohana.blog.fc2.com/blog-entry-58.html
 
@@ -349,7 +358,7 @@ http://konoyonohana.blog.fc2.com/blog-entry-58.html
 ```
 
 ![enumerate環境の書式を調整した例](https://storage.googleapis.com/zenn-user-upload/209lf1keufxi6z6265g9xmgb1dit =400x)
-*`enumerate`環境の書式を調整した例*
+*`enumerate`環境の書式を調整した例（※2020年度申請までの様式です）*
 
 たくさん業績が入りそうです。
 
