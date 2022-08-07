@@ -148,7 +148,7 @@ ecgモジュールを使ってECG信号を処理します。showオプション�
 ```py
 from biosppy.signals import ecg
 
-ecg_data = ecg.ecg(signal=ecg_df[0], sampling_rate=512., show=True)
+ecg_data = ecg.ecg(signal=ecg_df[0], sampling_rate=512., show=True, interactive=False)
 ```
 
 概要プロットは、左列が上から**生の波形・フィルタリングされた波形と検出したR波・心拍数の変動**、右列が**ECGの1波形**を示しています。
