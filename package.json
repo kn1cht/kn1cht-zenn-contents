@@ -18,6 +18,7 @@
   },
   "homepage": "https://zenn.dev/kn1cht",
   "dependencies": {
-    "zenn-cli": "^0.1.103"
+    "zenn-cli": "^0.1.103",
+    "zenn-content-css": "^0.1.131"
   }
 }
