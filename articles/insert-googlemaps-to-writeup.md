@@ -11,7 +11,7 @@ published: true
 
 :::message
 本記事は、[CTF Advent Calendar 2022](https://adventar.org/calendars/7550) 2日目の記事です。
-昨日の記事は、xrekkusuさんの「[CTFプレイヤーにアンケート取ってなんかやりたくない？](https://forms.gle/XXtrwJ6AfC7WycjG9)」でした。CTFをやっている人向けのアンケートフォームになっているのでぜひ奮って回答しましょう。明日は、ふぁぼんさんの「今年もやります! 冬の風物詩、激冷えCTF参加記 (TSG LIVE!)」です。
+昨日の記事は、xrekkusuさんの「[CTFプレイヤーにアンケート取ってなんかやりたくない？](https://forms.gle/XXtrwJ6AfC7WycjG9)」でした。CTFをやっている人向けのアンケートフォームになっているのでぜひ奮って回答しましょう。明日は、ふぁぼんさんの「[TSG LIVE! 9 ライブCTF参加記](https://yuyusuki.hatenablog.com/entry/2022/12/03/010000)」です。
 :::
 
 # TL;DR
