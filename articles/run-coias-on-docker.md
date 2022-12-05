@@ -12,9 +12,9 @@ published: true
 :::message
 本記事は、[東京大学きらら同好会 Advent Calendar 2022](https://adventar.org/calendars/7530) 3日目、[まんがタイムきらら Advent Calendar 2022](https://adventar.org/calendars/7455) 3日目の記事です。
 
-きらら同好会カレンダーの昨日の記事は、「[わたしときららファンタジア](https://utkiraracircle.hatenablog.com/entry/watashi-kirafan)」でした。明日は、ひろみねさんの「キャラソンからチノの成長を振り返る」です。
+きらら同好会カレンダーの昨日の記事は、「[わたしときららファンタジア](https://utkiraracircle.hatenablog.com/entry/watashi-kirafan)」でした。明日は、ひろみねさんの「[キャラソンからチノの成長を振り返る](https://mine-h.hatenablog.com/entry/2022/12/04/173529)」です。
 
-まんがタイムきららカレンダーの明日の記事は、こはるなぎ まなかさんです。
+まんがタイムきららカレンダーの明日の記事は、こはるなぎ まなかさんの「[10年前の2巻乙作品『ハームフル・ビューティフル』を考察しよう](https://vtuberstart.com/harmful-beautiful/)」です。
 :::
 
 # TL;DR
@@ -99,10 +99,12 @@ Dockerイメージが取得されるのでしばらく待ちます。
 アイコンはQuro先生の描き下ろしらしいです。最高ですね。
 
 :::message
-注意点があります。127.0.0.1というIPアドレスでもローカルホストにアクセスできますが、IPアドレスでCOIASを開いてしまうと、**画像の解析から先がエラーで進めない状態**になりました。これは、Docker Desktopのコンテナ一覧に出ているリンクをクリックしてブラウザを開いた場合に起こります。
-必ず`localhost:3000`を開くようにしましょう。
+~~注意点があります。127.0.0.1というIPアドレスでもローカルホストにアクセスできますが、IPアドレスでCOIASを開いてしまうと、**画像の解析から先がエラーで進めない状態**になりました。これは、Docker Desktopのコンテナ一覧に出ているリンクをクリックしてブラウザを開いた場合に起こります。~~
+~~必ず`localhost:3000`を開くようにしましょう。~~
 
-![](/images/coias/container-link.png)
+12月5日追記：本件はCORS（クロスオリジンリソース共有）絡みのエラーでした。
+[開発リポジトリにissueを提起したところ](https://github.com/coias/coias-back-app/issues/24)、速やかに対応していただいたので、127.0.0.1を開いてもエラーなく使えるようになりました。
+ただ、COIASを実行しているマシン以外からフロントエンドにアクセスすると、同様にCORSのエラーで使えないと考えられます。ご注意ください。
 :::
 
 ## 2回目以降の起動
