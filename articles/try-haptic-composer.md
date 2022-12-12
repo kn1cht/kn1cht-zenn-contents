@@ -9,7 +9,7 @@ published: true
 ---
 
 :::message
-本記事は、[Human-Computer Interaction (HCI) Advent Calendar 2022](https://adventar.org/calendars/7901) 10日目の記事です。昨日の記事は、まだ枠が空いていますね。後からでもいいのでネタがある方の参加をお待ちしています。明日11日の記事は、Seitaro Kanekoさんです。今日に引き続き触覚のネタとのことです。
+本記事は、[Human-Computer Interaction (HCI) Advent Calendar 2022](https://adventar.org/calendars/7901) 10日目の記事です。昨日の記事は、まだ枠が空いていますね。後からでもいいのでネタがある方の参加をお待ちしています。明日11日の記事は、Seitaro Kanekoさんの[手触りの物理的な測り方とHCIへの活かし方](https://gitogitogissyu.hatenablog.com/entry/2022/12/11/224505)です。
 :::
 
 今月始め、バーチャルリアリティを扱うニュースサイトMogura VR Newsに「**ゲーミングデバイスのRazer、デバイス横断で“触覚”を設定できる開発ツールをリリース VRも対応**」という記事が出ていました。
