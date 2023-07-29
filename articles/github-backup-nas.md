@@ -77,6 +77,7 @@ GitHubが全く使えないほどの大きな障害は大変まれではある�
     - 公式で用意されているGitパッケージです
     - 主な用途はNASにGitサーバーを建てることですが、今回はクライアントとして使います
 - Git LFS `3.1.2`
+- [Python 3.9](https://www.synology.com/ja-jp/dsm/packages/Python3.9) `3.9.14-0010`
 - [Z shell](https://synocommunity.com/package/zsh) `v5.8-11`
     - Synology NASのオープンソースコミュニティ"SynoCommunity"が配布する`zsh`です
     - CLIでの作業を楽にするために使いました
@@ -168,14 +169,23 @@ fi
 
 ## Pythonのインストール
 GitHubを巡回してリポジトリを自動同期するには、便利なPythonを使うことにします。
-Synologyの公式パッケージにもPythonはあるものの、現在の**標準パッケージには古いPython 2しかありません**（今見たらベータパッケージとしてPython 3.9が増えていました！　これでもいいかもしれません）。
+~~Synologyの公式パッケージにもPythonはあるものの、現在の標準パッケージには古いPython 2しかありません。~~
+2023年現在、**公式パッケージとしてPython3.9が存在する**のでこれを使えばOKです。ただし、デフォルトではパッケージをインストールするpipコマンドが存在しないため、コマンドでインストールする必要があります。
+やり方の記事を別途書きましたので、ぜひご覧ください。
+
+https://zenn.dev/kn1cht/articles/synology-python-39
+
+`python3.9`、`pip3.9`が動いたら完了です。
+
+:::details Python3.9パッケージがなかった頃の古い情報
 
 先駆者の方が「[SynologyNAS に最新バージョンの Python 3.8 を入れてみた ～だってパッケージセンターは 3.5 止まりなんだもの～](https://b8a4avtof30320dmspo.blogspot.com/2020/11/synologypython-35.html)」という記事を書かれていたので、筆者はこれに従って最新のPythonを入れることにしました。
 
 https://b8a4avtof30320dmspo.blogspot.com/2020/11/synologypython-35.html
 
 この記事では、Synology NAS用のパッケージマネージャEntware-ngを導入しています。Pythonに限らず様々なパッケージを管理できるので入れて損はありません。
-`python3`、`pip3`が動いたら完了です。
+
+:::
 
 # GitHubからリポジトリを自動clone or pullするプログラム
 開発環境ができたので、いよいよ本筋のバックアッププログラムを作ります。[ソースコード全文はGitHubに置いてあります](https://github.com/kn1cht/backup_github)。
