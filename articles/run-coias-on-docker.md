@@ -24,6 +24,13 @@ published: true
 
 ![](/images/coias/search-boxes.jpg)
 
+:::message
+2023年8月末から、Webアプリ版のCOIASが一般公開されました。インストール不要で、ブラウザからアクセスして小惑星探しができます。
+COIASを使用したい場合、基本的にはWeb版を使用するのがおすすめです。
+:::
+
+https://web-coias.u-aizu.ac.jp/
+
 # COIASとは
 COIAS (Come On! Impacting ASteroid)は、**新しい小惑星を発見する**ためのソフトウェアです。⽇本スペースガード協会の浦川氏をはじめとする研究チームによって開発されています。
 
