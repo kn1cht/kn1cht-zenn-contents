@@ -6,7 +6,7 @@ topics:
   - OSINT
   - CTF
   - avtokyo
-published: false
+published: true
 ---
 
 2023年11月11日に開催された[Open xINT CTF 2023](https://openxintctf.wixsite.com/pinja/post/2023-open-xint-ctf)に参加しました。
@@ -15,7 +15,7 @@ published: false
 https://zenn.dev/kn1cht/articles/open-xint-2022-40548f
 
 
-全18問のうち8問を解いて1050点、11位という結果でした。解けた問題に関しては結構スムーズに正答までたどり着けた点は良かった一方で、あと一歩のところまで進めたのにFlagを取れなかった問題があったのはもったいかなったです……。
+全18問のうち8問を解いて1050点、11位という結果でした。解けた問題に関しては結構スムーズに正答までたどり着けた点は良かった一方で、あと一歩のところまで進めたのにFlagを取れなかった問題があったのはもったいなかったです……。
 
 ![](/images/open-xint-2023-kn1cht/stats.png)
 
@@ -109,7 +109,7 @@ https://vietexpert.jp/news/others/6347
 
 航空機を撮影した解像度低めの動画が与えられます。秒数が短いものの、**4発のターボプロップ機**に見えます。
 
-~~そしてここからが本題ですが、自衛隊はこのタイプのF16を装備していない~~
+~~そしてここからが本題ですが、自衛隊はこのタイプのF-16を装備していない~~
 
 4発ターボプロップというといくつかあるものの、身近なものにはP-3CやC-130シリーズなどがあります。
 まずは自衛隊も装備しているらしいC-130Hを答えてみましたが、これは不正解でした（詳しい人はカラーリングなどの情報から弾けるそうな）。
@@ -134,11 +134,15 @@ https://trafficnews.jp/post/66544
 
 筆者はこの情景を見た瞬間に「◯◯の◯◯◯◯◯っぽくね？」と浮かんでしまい、青空文庫で冒頭部を念のため読んでからFlagとして提出したら通ってしまいました……。
 
-他の方はもう少し真面目に（？）画像生成AIの逆をどうするのかなどを考えていたらしいので、なんだか申し訳ないですね……。
-
-なお、Stable Diffusionのような画像生成モデルの画像から逆にpromptを予測するinterrogatorと呼ばれるモデルは実際に開発されています。
+なお、Stable Diffusionのような画像生成モデルの画像から逆にpromptを予測するモデルがあり、interrogatorと呼ばれています。
 
 https://runrunsketch.net/clip-interrogator/
+
+Interrogatorを試せるデモ[pharmapsychotic/CLIP-Interrogator](https://huggingface.co/spaces/pharmapsychotic/CLIP-Interrogator)がHugging Faceにあったので、それに入れてみると次のようにpromptが推定されました。
+
+> a painting of two men and two polar bears, old bolt action rifles, greg hildebrandt and mark brooks, two dogs, an american romanticism painting, reduce character duplication, black and white artwork, furries wearing tails, promotional image
+
+ただ、これだけで知らない作品を推測するのは難しそうですし、GPTに聞いてみても"The Call of the Wild"や"White Fang"など違う作品を挙げてくるだけでした。エスパーなしでも解ける想定解があるのか、気になるところですね。
 
 # BUS Category
 ## BUS
