@@ -170,6 +170,11 @@ https://www.shimotsuke.co.jp/articles/-/413925
 
 ![](/images/open-xint-2023-kn1cht/bus-zoom.jpg =300x)
 
+その後、日光市営バスで現地を訪ねてみました。
+この路線を使うと足尾銅山で有名な足尾を見学できたり、わたらせ渓谷鐵道に乗ったりできておすすめです。
+
+@[tweet](https://twitter.com/kn1cht/status/1726077041861361899)
+
 # SOCIAL Category
 ## cosplayer (unsolved)
 >下記のURLに投稿された、恐竜に扮したCCさくらのコスプレイヤーの方は昔、
@@ -186,7 +191,7 @@ https://www.shimotsuke.co.jp/articles/-/413925
 
 恐竜の気ぐるみとCCさくらの衣装を着たインパクトのあるツイートが与えられます。ただ、投稿者はコスプレイヤー本人ではないようなので、まずは恐竜のコスプレイヤーを探す必要があります。
 
-Anime Bostonというイベント名が記載されているので、"anime boston cc sakura"などで検索していくと、結果の一つに「この人は知り合いの友人で**、彼のFacebookに写真がある**」といったコメントが見つかります。
+Anime Bostonというイベント名が記載されているので、"anime boston cc sakura"などで検索していくと、結果の一つに「この人は知り合いの友人で、 **彼のFacebookに写真がある**」といったコメントが見つかります。
 
 https://www.reddit.com/r/CLAMP/comments/88mg1n/comment/dwor11y/
 
