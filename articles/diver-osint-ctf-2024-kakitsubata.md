@@ -6,7 +6,7 @@ topics:
   - OSINT
   - CTF
   - writeup
-published: false
+published: true
 ---
 
 # 開催概要・制度
@@ -306,7 +306,7 @@ https://www.openair.beer/
 
 サンディといえば関西の激安系？スーパー（筆者が関西在住経験ありのため、たまにお世話になっていた）。写真の「7号店」という文字が気になるのでググる。
 
-TODO: image
+![](/images/diver-osint-ctf-2024-kakitsubata/chiban-supermarket.jpg)
 
 どうやらサンディは出店順の号数を出しているらしい。マイナビパートの募集に双葉店（大阪府茨木市）が7号店である旨の記載がある。
 
@@ -509,7 +509,7 @@ https://data.cityofnewyork.us/Social-Services/311-Service-Requests-for-2004/sqcr
 
 2004年に該当するものは約110万件あり、そのレコードを100件ずつ見ていくのはとてもつらい。該当ページの右上に「Action」ボタンがあり、そこから全データをCSV（約532MB）としてダウンロードできる。 このデータには問い合わせの記録日（CreatedDate）や対象の場所（Street name）などとともに苦情内容（Descriptor）が記録されているが、さすがに目grepは不可能なので、grepしてみる。
 
-TODO: image
+![](/images/diver-osint-ctf-2024-kakitsubata/publicservice-csv.png)
 
 「CrossStreet1」「CrossStreet2」または「Intersection Street1」「Intersection Street2」にそれぞれ”46 AVENUE” ”111 STREET”が記録されているものを炙り出したい。
 
@@ -700,14 +700,14 @@ https://tadatabilife.hatenablog.com/entry/2023/10/27/061617
 
 在来線の駅で駅員に捕まるシーン(3:24～)が映っており、その後駅員の制止を振り切って新幹線にて逃走を図る(4:26～)。
 
-TODO: image
+![](/images/diver-osint-ctf-2024-kakitsubata/youtuber-1.jpg)
 
 **ここからblackwasanのフォロー：**
 このシーンをよく見ると逃走に使用した新幹線は、さくら572号新大阪行であることが分かる。 当該車両の列車番号は572Aなので、あとは駅名を絞るだけ。
 
 駅員に捕まっているシーンで、一瞬だけホームの案内表示が映る(3:49) 。
 
-TODO: image
+![](/images/diver-osint-ctf-2024-kakitsubata/youtuber-2.jpg)
 
 この時、Fidias氏はJR九州の在来線特急「リレーかもめ」から下車しようとしているので、この特急と九州新幹線が乗り継ぎ可能な駅である博多・新鳥栖のどちらか。映像から、明らかに博多駅の規模ではないので答えは新鳥栖駅である。 （よく考えると、さくらの案内表示に「次は博多」と書いてあるので、その手前の停車駅からも絞り込めます）
 
@@ -818,7 +818,95 @@ https://flyteam.jp/registration/I-LIDI
 
 
 ## container (medium) [meow_noisy] - 496 point 12 solves
-TODO: TBA
+>これらの画像の撮影日と時間帯（午前か午後か）を答えてください。
+>フラグ形式はDiver24{YYYY-MM-DD-[AP]M}です。たとえば、2024年6月9日午前ならば、Diver24{2024-06-09-AM}となります。
+>Specify the date and time (morning or afternoon) when these images wwre taken.
+>Flag format: Diver24{YYYY-MM-DD-[AP]M}
+>Flag Example: Morning of June 9, 2024 -> Diver24{2024-06-09-AM}
+>(3 attempts)
+>png.jpg | png2.jpg
+>---------|----------
+> ![](/images/diver-osint-ctf-2024-kakitsubata/png.jpg =200x) | ![](/images/diver-osint-ctf-2024-kakitsubata/png2.jpg =200x)
+
+当チームが最後に解いた問題。というのも、初日6月8日の夜にはFlagに到達していたものの、様々な理由から確信が持てず提出をギリギリまで控えていたのだった。それまでの間、チーム全員であらゆる証拠を探し回ることになった。
+
+コンテナを積載したトラックの写真が2枚渡された。写真に情報が多く場所はすぐに分かりそうだが、今回問われているのは撮影日と時間帯なので場所が分かるだけでは不十分。
+
+実は、海運コンテナは番号が分かれば追跡サイトで移動の履歴が分かる。これを活用した解法は、4月に行われたHEXA OSINT CTF v3 “Drop it”でも出題された。
+
+https://zenn.dev/ryo_a/articles/5d5b14d0d875fb#drop-it-(84-solves)
+
+### 場所の特定
+まずは撮影された位置を特定する。1枚目（png.jpg）に「香取神社 勝矢祭」と書かれたのぼりがある。これを検索することで地域は**亀戸**と分かる。また、2枚目（png2.jpg）に「...橋南詰」という交差点名標識があり、Google ストリートビューと景色を見比べることで**五之橋南詰**交差点だと特定できた。
+
+https://maps.app.goo.gl/Kk1vrAJq55nz9Upo6
+
+写真にもあるとおり、香取神社 勝矢祭は毎年5月5日に行われている。これは後で時期の絞り込みに使える。
+
+### コンテナの追跡
+いずれの写真も鮮明で、コンテナ番号（4文字のアルファベット + 7桁の数字）はすぐに読み取れる。
+なお、コンテナの追跡結果の用語はサイトによって異なるが、emptyの状態で利用が始まり（Gate out empty）、荷物を積載したあとに港に到着し、船に積まれるという大体の流れが想像できればよい。
+
+1枚目のオレンジのコンテナはHLBU1173129。
+
+https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html?container=HLBU++1173129
+
+- 2024-05-22 13:20 に Shimizu（清水港）で Gate out empty
+- 2024-05-24 09:08 に Shimizu（清水港）で Arrival in
+- 2024-06-08 23:59 に Shimizu（清水港）で Loaded
+- その後、船はシンガポールに向かっている
+
+2枚目の青のコンテナはAPZU2108462。
+
+https://www.searates.com/container/tracking/?number=APZU2108462%20&type=CT
+
+- 19 Apr 2024 15:25 にTokyoで Empty to shipper
+- 22 Apr 2024 13:18 にTokyoで Ready to be loaded
+- 30 Apr 2024 11:24 にTokyoで Loaded on board
+- 30 Apr 2024 16:36 にTokyoで Vessel Departure
+- その後、船はカンボジアのシアヌークビルに向かっている
+
+見比べれば分かるように、今閲覧できるコンテナの移動日は違う期間である。ただ、前述のとおり祭りは5月5日には終わり、のぼりも撤去されたと考えれば、コンテナの撮影時期は**APZU2108462が港の外で移動していた4月19日から22日の間**と考えられる。
+
+### 天気の確認
+これで4日間程度まで期間を絞れたが、回答するにはさらに情報が必要である。改めて写真をよく見ると、地面が少し濡れているように見える。雨が降ったのだろうか。
+
+そこで、亀戸（東京）の2024年4月の天気を気象庁のサイトで調べた。
+
+https://www.data.jma.go.jp/obd/stats/etrn/view/daily_s1.php?prec_no=44&block_no=47662&year=2024&month=4&day=&view=
+
+21日と22日に雨が降ったようだ。この2日間が怪しいので時間ごとの降水量も見ると、21日夕方から22日の昼過ぎまで雨となっていた。2024-04-21-PM・2024-04-22-AM・2024-04-22-PMのどれかではないかと思われる。
+
+写真は夕方には見えないため21日午後の線は薄く、またコンテナが22日13時ごろ港に入っていることから22日午後も考えにくい。よって、ここまでで**2024-04-22-AMが最有力**と推理できる。
+
+### 不安
+しかし、チーム全員で話し合いを重ねても、我々はcontainerのフラグを提出することができなかった。
+
+考察は筋が通って見える一方で、1枚目のコンテナ（HLBU1173129）の履歴を全く活用していないのが気になっていた。わざわざ2枚の写真で出題しているのだから、実は両方のコンテナの情報を使わなければ解けないのに、我々が見落としているのではないか？（※勘違い）
+
+しかも本問には3回の回答制限があり、気軽に提出して間違ってしまうと点数が得られないかもしれない。
+
+### 迷走
+チームメンバー総出でコンテナの情報を探したが、HLBUコンテナが4月にどこにいたか突き止めることはできなかった（各種アーカイブサイトでも閲覧できなかった）。
+
+そこで、少しでも証拠を集めて確信を得ようと、実際には不要な情報まで探し始めてしまった。
+
+- **選挙**：この時期、東京都15区では衆議院議員補欠選挙が実施されていた。4月21日午後7時過ぎには、立候補者の乙武洋匡氏が亀戸駅前で演説していたところ、男が乱入し関係者に暴行するという事件が起きていた。[このときのSNSの映像](https://x.com/iwawawann/status/1782002878946889732)では、まだ雨はほとんど降っていないように見える。
+- **歩行者天国**：亀戸駅前では、[毎週日曜日の12時から17時まで歩行者天国が実施](https://www.kameidoclock.jp/kameido-turtles/archives/304.php)され、亀戸駅北口から亀戸四丁目の区間が車両通行止めとなる。 写真の撮影地点は通行止めではないが、大型のトラックは日曜日（21日）の午後には亀戸周辺を避けて移動したかもしれない。
+- **ベーカリー**：写真を見つめていると、1枚目の奥に明かりのついた店舗が見える。地図で確認すると、これはベーカリーである。ただし、当該店舗は不定休で、instagramの投稿から営業日を割り出そうとしても確実な情報は得られなかった。
+
+![](/images/diver-osint-ctf-2024-kakitsubata/container.png)
+*問題を深読みしすぎていらない証拠まで探し始めた図*
+
+ここまでの情報を集めても、なお青いコンテナの追跡と天気以外に有力な証拠はなく、CTF終了1時間前に調査を打ち切って提出したところ、正解した。
+
+`Diver24{2024-04-22-AM}`
+
+完全に出題の意図を深読みしすぎ、medium難易度なのにhard並みの調査をしてしまった気がする。ただ、亀戸の事情には詳しくなれた。
+
+CTF終了後、kn1chtが現地を訪問した。
+
+@[tweet](https://x.com/kn1cht/status/1799728316196458709)
 
 # misc
 ## number (easy) [kuzushiki] - 100point 176 Solves
@@ -1162,7 +1250,7 @@ https://www.n2yo.com/satellite/?s=58400
 
 @[tweet](https://x.com/TMU_SSL/status/1798890882189705693)
 
-色々検索していると、衛星の軌道データ（Two-line element set; TLE）から位置を計算するプログラムについての情報が得られる。筆者はSkyfieldというPythonライブラリを導入し、ドキュメントを見ながらコードを実行した。
+色々検索していると、衛星の軌道データ（**Two-line element set; TLE**）から位置を計算するプログラムについての情報が得られる。筆者はSkyfieldというPythonライブラリを導入し、ドキュメントを見ながらコードを実行した。
 
 https://rhodesmill.org/skyfield/earth-satellites.html
 
@@ -1201,32 +1289,36 @@ Altitude (km): 506.16102972003506
 本カテゴリのみ、ある（架空の）人物についての連続した問題が出題される。ただ、mapperという問題が予想外の難易度となってしまい、本番中に本カテゴリを進めたのは2チームだけだった。
 
 ## mapper (easy) [kn1cht] - 500 point 2 Solves
-あなた方は極めて高い調査スキルを持っていると聞いた。我々の身分は明かせなくて申し訳ないのだが、一つ調査依頼を受けてくれないだろうか。
-我々はある男を追っている。
-情報が見つからず困っていたのだが、彼が撮ってアップロードした写真を見つけた。現地時間でいつ撮影されたのか特定してほしい。
-
-Flag形式: Diver24{yyyy-MM-dd HH:mm}
-例えば、2024年6月5日午後3時14分ならば Diver24{2024-06-05 15:14}となります。
-
-この問題に正解すると、2問が新たに追加されます。
-
-You have extremely high investigation skills. We are sorry that we cannot reveal our identities, but we would like to ask you for an investigation.
-We are in pursuit of a man.
-We were having trouble finding information, but we found a photograph he took and uploaded. We need you to identify when it was taken in local time.
-
-Flag format: Diver24{yyyy-MM-dd HH:mm}
-For example, if it is 3:14 pm on 5 June 2024, the flag should be Diver24{2024-06-05 15:14}.
-
-If you answer this challenge correctly, two new challenges will be added.
-
-
+>あなた方は極めて高い調査スキルを持っていると聞いた。我々の身分は明かせなくて申し訳ないのだが、一つ調査依頼を受けてくれないだろうか。
+>我々はある男を追っている。
+>情報が見つからず困っていたのだが、彼が撮ってアップロードした写真を見つけた。現地時間でいつ撮影されたのか特定してほしい。
+>
+>Flag形式: Diver24{yyyy-MM-dd HH:mm}
+>例えば、2024年6月5日午後3時14分ならば Diver24{2024-06-05 15:14}となります。
+>
+>この問題に正解すると、2問が新たに追加されます。
+>
+>You have extremely high investigation skills. We are sorry that we cannot reveal our identities, but we would like to ask you for an >investigation.
+>We are in pursuit of a man.
+>We were having trouble finding information, but we found a photograph he took and uploaded. We need you to identify when it was taken >in local time.
+>
+>Flag format: Diver24{yyyy-MM-dd HH:mm}
+>For example, if it is 3:14 pm on 5 June 2024, the flag should be Diver24{2024-06-05 15:14}.
+>
+>If you answer this challenge correctly, two new challenges will be added.
+>![](/images/diver-osint-ctf-2024-kakitsubata/street.jpg)
 
 Easyなのに終盤まで誰も解けなくて話題になった伝説の問題。
 とある街角の写真が渡される。看板などの情報から、岐阜駅前の大通りであることは容易に割り出せるが、撮影時刻を知るには「彼がアップロードした」ときの情報を見つける必要があると思われる。
 
-この写真のメタデータに”FBMD0a000a7101000044a8000099ef01008ffd0100bc0f02002c080400a0c3060003e806000c0407003b250700bb9a0b00”という文字列があり、これはFacebookがアップロードされた写真に付与しているメタデータだと分かる。それによって、我々も含め多くのチームはFacebook, Instagram, ThreadsなどのSNSから岐阜駅に関する投稿を必死で見まくる作業を続けていた。ただ、このメタデータは運営もそこまで重視していなかった様子で、予期せぬミスリードとして働いてしまった。
+この写真のメタデータに`FBMD0a000a7101000044a8000099ef01008ffd0100bc0f02002c080400a0c3060003e806000c0407003b250700bb9a0b00`という文字列があり、これはFacebookがアップロードされた写真に付与しているメタデータだと分かる。
 
-問題のタイトルに”mapper”（地図をつくる人）とあること、対象者が写真をアップロードしたと書かれている（SNSなら、投稿したという表現になりそう）ことから、SNSではなく地図関連のサービスで写真が見つかる可能性を思いついた。
+https://www.hackerfactor.com/blog/index.php?/archives/726-Facebook-Tracking.html
+
+それによって、我々も含め多くのチームはFacebook, Instagram, ThreadsなどのSNSから岐阜駅に関する投稿を必死で見まくる作業を続けていた。ただし、**これは誤解で、SNSを探しても正答にはたどり着かない**。
+このメタデータは運営もそこまで重視していなかった様子であるが、予期せぬミスリードとして働いてしまった。
+
+問題のタイトルに”mapper”（地図をつくる人）とあること、対象者が写真を**アップロードした**と書かれている（SNSなら、投稿したという表現になりそう）ことから、SNSではなく地図関連のサービスで写真が見つかる可能性を思いついた。
 それでもGoogle Maps, OpenStreetMap, Wikimedia Commonsなどメジャーなサイトでは該当する写真が出てこない。最終的に、”map image upload” “mapper image upload”などの検索結果を眺めていたところ、Mapillaryという場所の写真共有サービスを発見した。
 
 https://www.mapillary.com/app
@@ -1235,12 +1327,16 @@ Webアプリを開き、岐阜駅近くにズームしていくと、この写�
 
 https://www.mapillary.com/app/user/mori_mune24?lat=35.412007&lng=136.75669800000003&z=17&pKey=438678415240541&x=0.5112438510127063&y=0.4499698406608722&zoom=0
 
-
-
+![](/images/diver-osint-ctf-2024-kakitsubata/mapper.jpg =420x)
 
 撮影されたであろう時間が書いてあるので、分単位で入力するとFlag。
 
-️Diver24{2023-02-06 09:46}
+`️Diver24{2023-02-06 09:46}`
+
+![](/images/diver-osint-ctf-2024-kakitsubata/mapper-done.jpg =450x)
+*夜になっても誰も解けていなかったmapperが突破されて盛り上がるDiscord*
+
+個人の感想だが、タイトルからのメタ読みをしなくても、地図関連の調査が有益だと伝わる問題文であれば、もう少しスッキリ解けたかもしれない。
 
 ## venue (easy) [`_roku_`] - 500 point 2 Solves
 >我々が追っている人物は2024年5月にイベントを開催していたらしいことが判明した。我々は予約履歴を照会したいと考えている。
@@ -1257,28 +1353,71 @@ https://x.com/mori_mune24
 
 投稿されている内容を確認すると、イベントを予定しているという内容の投稿があり、そのイベントに関する Google docs へのリンクが共有されていることがわかる。
 
+![](/images/diver-osint-ctf-2024-kakitsubata/venue-tweet.png =550x)
+
 中身を確認すると 5 月にイベントを開催しようとしていることが確認できる。イベント名や「モリカワ」という名前から、どことなくお酒を飲みながらセキュリティのトークをする日本のイベントで開催される某CTFへのオマージュを感じる。
+
 Google フォームから何か情報が手に入るかを確認してみたが、特に何も情報が得られない。ダウンロードして Word で開いて何か情報が得られないかも確認したが有益な情報は見られない。チームメイトと会話していると、ドキュメントにコメントがあるとの話になり、中身を確認したところ「リンクを消した」といったコメントが残っているが、リンク先がわからない。
+
 ふと、展開ボタンがあることに気づき開いてみたところ、URL が記載されていた。
+
+![](/images/diver-osint-ctf-2024-kakitsubata/venue-docs.jpg)
 
 得られた URL は貸し会議室のもの。イベントはこの会議室で行われたと考えらえるため、こちらの URL を入力して Flag。
 
 `Diver24{https://www.instabase.jp/space/8039340260}`
 
-
 余談:
-誤って文章をいじってしまったため、googleドキュメントにご本人登場が起きた。
+解いている途中に誤ってコメントを操作してしまい、念のため運営チームに問題を壊していないか確認を依頼したところ、GoogleドキュメントにMune Moriさんご本人が登場した。
+
+![](/images/diver-osint-ctf-2024-kakitsubata/venue-munemori.png =500x)
+*ご本人登場*
 
 ## uploader (medium) [meow_noisy] - 500 point 2 Solves
-我々が追っている人物は、どこかに猫の動画を投稿しているようだ。その動画のアップロード時間を特定できないだろうか。
-Flag形式: Diver24{投稿時刻のunix time(UTC+0)}
-例えば、2000年1月1日 12時34分56秒(UTC+0)に投稿されている場合、Diver24{946730096}となります。
+>我々が追っている人物は、どこかに猫の動画を投稿しているようだ。その動画のアップロード時間を特定できないだろうか。
+>Flag形式: Diver24{投稿時刻のunix time(UTC+0)}
+>例えば、2000年1月1日 12時34分56秒(UTC+0)に投稿されている場合、Diver24{946730096}となります。
+>
+>The person we are pursuing appears to have posted a video of a cat somewhere. Can you determine the upload time of that video?
+>Flag format: Diver24{upload time in unix time(UTC+0)}
+>For example, if the video was uploaded at 12:34:56(UTC+0) on 1st Jan 2000, the flag should be Diver24{946730096}.
 
-The person we are pursuing appears to have posted a video of a cat somewhere. Can you determine the upload time of that video?
-Flag format: Diver24{upload time in unix time(UTC+0)}
-For example, if the video was uploaded at 12:34:56(UTC+0) on 1st Jan 2000, the flag should be Diver24{946730096}.
+動画のアップロード先を見つければ良い問題だが、mori_mune24のSNSでの活動のノイズがかなり多く5人総出で挑んだものの苦戦した。例えばインスタを持っていたり、公開しているgoogleドキュメントからxeuledocでgmailアドレスが引っこ抜けたり、LINEアカウントを持っていることを匂わせたりといった感じである。
 
-TODO: TBA
+日本時間深夜2時を回っていたため、一旦調査を中断し、寝る時間にしようということになった。その中で一人 `_roku_`さんだけがねっ転びながら調査していたらしく、TikTokをスマホにインストールして、mori_mune24の以下の投稿を開いた。
+
+@[tweet](https://x.com/mori_mune24/status/1781851814994018357)
+
+そうすると以下の画面になったとのこと。このポップアップはPCブラウザで開いても出ない。
+
+![](/images/diver-osint-ctf-2024-kakitsubata/tiktok-share.jpg =300x)
+
+これは、動画の共有リンクを生成する際に自分のアカウント情報を含めてしまっているために起きており、TikTok利用時の意図しない機微情報漏洩リスクであるとのこと。
+
+https://marke-insight.com/tiktok-link-copy/#index_id10
+
+動画を1件アップロードしていることがわかったので、後は投稿時刻を調べるだけである。
+
+"tiktok upload date"で検索すると、次のツールが見つかったのでこれで時刻が分かった。
+
+https://bellingcat.github.io/tiktok-timestamp/
+
+実行結果
+`Uploaded on: Sat, 20 Apr 2024 04:59:58 GMT (UTC)`
+
+あとはUNIX時間に直せばOK。
+
+フラグ
+`Diver24{1713589198}`
+
+（kn1chtさんによる補足）
+解法をたどっていて見つけたTiktok部分の別解。
+
+`view-source:https://www.tiktok.com/@mmrrkkww0615/video/7359809566856449281`
+
+ソースコードを開いて、`createTime`で検索。直接Unix Timeが得られるのでちょっと楽。
+
+`"createTime":"1713589240"`
 
 # 最後にひとこと
 
@@ -1296,3 +1435,10 @@ TODO: TBA
 geo問中心に問いていましたが、「こうやって解いてほしいんだろうな」という運営側の意図を感じさせる問題が多い印象を受けました。幅広い難易度の問題があるCTFで、初心者から常連まで楽しめる大会だったのではないでしょうか。
 いつもは大体解ける問題を解き終わってそのまま行き詰まることも多いのですが、私が仮眠したり食事を取っている間に数問解かれていることが多々あったので、今回のチームメイトの粘り強さをひしひしと感じました。深夜0時すぎにmapperの扉が開かれた時の盛り上がりと、チームとして最終解答となった問題のcontainerが通った時の爽快さは想い出深いものとなりました。
 運営の皆様方、楽しい問題をありがとうございました。お疲れ様でした！
+
+## meow_noisy
+まず、チームの誘いに快諾いただいたメンバーに感謝します。多様なバックグラウンドと高度な調査スキルを持ち、何よりOSINT問題を解くことが好きな面々が協力し合ったことで良い結果をおさめることができました。CTF後半では誰かの調査進捗をまた別の誰かが引き継いで調査活動を繰り返し四苦八苦しながらも全員が貢献してフラグをもぎ取るという、チーム戦ならではの戦い方ができ楽しかったです。
+
+そして運営に多大なる敬意を評します。このレベルの作問をするのはとても時間がかかったと思います。それこそ自分の持てるリソースをフルに使って全身全霊で作問し、それでも他のメンバーに瞬殺されたり後からまずい点が発覚して涙を流しながらボツにし、少しでもいい問題を作ろうとした作問風景が解いていてありありと見えるようでした。正解を正解だと確証させるための裏取り調査や専門知識がないプレイヤーが回答可能になるように、また海外プレイヤーにとっての公平性の担保など、非常に難しく苦しいことをやり遂げたと思っています。その結果、DIVER OSINT CTFは国際的なプレイヤーが競い合えるトップクラスのOSINT CTFとして認知されたのではないかと思います。また従来からのプレイヤー以外へのOSINT CTFの認知にも大きな影響があったと思います。OSINT CTFでこんなにwriteupが書かれるのは今まで見たことがありません。[裏テーマであるらしい](https://x.com/ryusei_ishika/status/1798305565166461373)コミュニティ活性化への多大なる貢献をされたと思います。OSINT CTFへの深い思い入れを感じるCTFでした。 改めてありがとうございました。
+
+最後に チーム KAKITSUBATA 一同 DIVER OSINT CTFチームに感謝申し上げます。素晴らしいOSINT CTFを開催いただきありがとうございました!🤿
