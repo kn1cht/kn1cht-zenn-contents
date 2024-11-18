@@ -238,7 +238,7 @@ https://www.instagram.com/livestreamcoffee/
 >https://x.com/kaidanmeguri/status/1852695312378253472
 >Format: XXXX+XX
 
-ネパールのTatopani（温泉）に行ったレポートがX（Twitter）に投稿されているので、場所を見つける問題です。Google Mapsでネパール付近の地図を見ながら素直にTatopaniと検索しました。
+ネパールのTatopani（温泉）に行ったレポートがX（Twitter）に投稿されているので、場所を見つける問題です。Google Mapsでネパール付近の地図を見ながら探しました。素直にTatopaniと検索しても出にくいので、投稿の発言からキーワードを拾って "nepal villa tatopani" で検索するとよかったです。
 
 複数候補が出てきてしまいますが、そんなに多くないので航空写真と道路形状が一致する地点を見つけてplus codeを確認できれば正解です。
 
