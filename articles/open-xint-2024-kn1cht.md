@@ -12,11 +12,9 @@ published: true
 2024年11月16日に開催された[Open xINT CTF 2024](https://openxintctf.wixsite.com/pinja/post/2024-open-xint-ctf)に参加しました。
 チーム参加も含めると3回目の参加です。昨年同様に、個人戦かつオンサイト・オンラインのハイブリッド形式（ただし、オンサイト限定問題はスコアで優遇）でした。
 
-筆者は諸事情で現地ではなく自宅から参加したため、現地限定のONSITEカテゴリ以外に絞って挑戦しました。
+筆者は諸事情で現地ではなく自宅から参加したため、現地限定のONSITEカテゴリ以外に絞って挑戦しました。全19問のうち11問を解いて2100点、5位でした。
 
-<!-- 順位出たら追記 -->
-
-<!-- ![](/images/open-xint-2024-kn1cht/stats.png)-->
+![](/images/open-xint-2024-kn1cht/stats.png)
 
 解けた問題、途中まで進めた問題についてWrite-upを残しておきます。
 
@@ -36,7 +34,7 @@ https://zenn.dev/kn1cht/articles/open-xint-2023-kn1cht
 
 とある本を上から見た写真が与えられました。イラストが見えますが、これは背表紙ではなく各ページの端に印刷することで絵柄を表現したものです。おしゃれ。
 
-（小口印刷という手法らしい）
+小口印刷（edge printing）という手法のようです。
 
 https://www.print-on.jp/doujin/comic/tokusyu/koguchi_insatu.htm
 
@@ -169,7 +167,7 @@ https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%83%E3%83%97%E3%83%BB%E3%82%AE%E3%8
 @[codepen](https://codepen.io/kn1cht/pen/WNVWpBJ)
 
 終了後まわりに聞いてみたら、有料サイトで視聴したりAmazon Primeでレンタル（100円）したという方もいました。
-アンケートを取ってみると、課金した方と無料で解いた方で半々という感じです。
+アンケートを取ってみると、課金した方と無料で解いた方が両方いて、後者が若干多かったようです。
 
 @[tweet](https://x.com/kn1cht/status/1857804414079340637)
 
