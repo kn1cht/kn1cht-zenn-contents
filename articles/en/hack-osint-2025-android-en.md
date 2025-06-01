@@ -1,24 +1,16 @@
----
-title: "HACK'OSINT 2025 Write-up (Le cote obscur/Communication)"
-emoji: "📱"
-type: "tech" # tech: 技術記事 / idea: アイデア
-topics:
-  - OSINT
-  - CTF
-published: true
----
+# HACK'OSINT 2025 Write-up (Le cote obscur/Communication)
 
-2025年5月23日から25日にかけて開催された[HACK'OSINT 2025](https://ctf.hackolyte.fr/)のWrite upです。
+This is a write-up of [HACK'OSINT 2025](https://ctf.hackolyte.fr/), held from May 23 to 25, 2025.
 
-(English version: https://github.com/kn1cht/kn1cht-zenn-contents/blob/main/articles/en/hack-osint-2025-android-en.md)
+(Japanese version: https://zenn.dev/kn1cht/articles/hack-osint-2025-android)
 
-このCTFでは、プレイヤーはAPT-509と呼ばれる架空のサイバー犯罪集団のメンバーについて調査します。調査の途中、Mikeという人物が作成した釣りに関するスマートフォンアプリが彼らの隠れた連絡手段であることがわかり、アプリについて調査する課題が2つ与えられました。
+In this CTF, players investigate members of a fictional cybercriminal group called APT-509. During the investigation, it turned out that a fishing-related smartphone app created by someone named Mike served as their concealed means of communication, and two challenges regarding the app were given.
 
-オフィシャルWrite upによると、想定される解法はアプリを実際に動作させることでした。
+According to the official write-up, the expected solution was to run the app directly.
 
 ![](/images/hack-osint-2025-android/fishingapp.png)
 
-ただ、サイバー犯罪組織が作成したアプリをいきなりインストールするのには抵抗がある（もちろん、CTFのための架空の組織です）うえ、検証に使用しやすいAndroid端末が私の手元にありませんでした。そこで、このWrite upでは、アプリを実行せずに静的な解析手段を用いて2問を解いてみます。
+However, I was hesitant to install an app created by a cybercriminal group (albeit fictional for the CTF), and I did not have an Android device handy for testing. Therefore, in this write-up, I will show how to solve both challenges using static analysis methods without running the app.
 
 ## Le cote obscur (50 points / 36 solves)
 >🇫🇷 – Quelle drôle d'application ! Une fois lancée, celle-ci semble être une façade dissimulant les activités cybercriminelles du groupe APT-509. L’un de nos experts a analysé l'application et a constaté, en examinant son code source, qu'une adresse e-mail y était potentiellement dissimulée. Malheureusement, il n'a pas réussi à la localiser.
@@ -31,17 +23,13 @@ published: true
 >
 >Flag format : cenestpasladressemaildhackolytequonrecherche@stpneflagpasca.fr
 
-アプリケーションに隠されているEメールアドレスを探す課題です。
+This challenge requires you to locate the email address hidden within the app.
 
-アプリのXAPKファイルはAPK配布サイトでダウンロードできます。
+The XAPK file of the app can be downloaded from an APK distribution site.
 
-https://apkpure.net/fishingapp/com.hackosint.myapplication
+Since XAPK and APK files are essentially ZIP archives, you can simply change the extension to .zip to extract them.
 
-XAPKやAPKファイルの実態はZIPアーカイブなので、拡張子を `.zip`に変更すると簡単に解凍できます。
-
-![](/images/hack-osint-2025-android/xapk-extract.png)
-
-5つのAPKファイルが含まれていますが、`com.hackosint.myapplication.apk`がメインだと思われます。これをさらにunzipしてもよいのですが、デコンパイルも同時に行った方が楽なため`apktool`を使用します。
+There are five APK files included, but it appears that `com.hackosint.myapplication.apk` is the main one. Instead of unzipping it again, it is more convenient to use `apktool` to decompile it.
 
 https://github.com/iBotPeaches/Apktool
 
@@ -52,8 +40,9 @@ AndroidManifest.xml  apktool.yml  assets  original  res  smali
   smali_classes2  unknown
 ```
 
-抽出されたファイルは25,696個もあり、手動で探すのは大変そうです。今回探したいのはEメールアドレスなので、`***@***.***`のようなパターンをgrepで探します。
-（一般的なメールアドレスの形式にマッチする正規表現をLLMに教えてもらいました。）
+The extracted files number around 25,696, so searching manually would be lengthy. Since we are looking for an email address, we can use grep to search for patterns like `***@***.***`.
+
+(I asked an LLM for a regular expression that matches the general email address format.)
 
 ```bash
 $ grep -rE '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' com.hackosint.myapplication
@@ -63,7 +52,7 @@ com.hackosint.myapplication/smali_classes2/com/hackosint/myapplication/
 MainActivityKt$CreditsScreen$1.smali:    const-string v0, "str3etf1sher@mail.com"
 ```
 
-これがこのアプリケーションに含まれている唯一のEメールアドレスのようです。
+This is the only email address contained in the app.
 
 flag: `str3etf1sher@mail.com`
 
@@ -74,7 +63,8 @@ flag: `str3etf1sher@mail.com`
 >
 >Flag format : JJ/MM/AAAA
 
-FishingApp以外にもAPT-509が使用しているコミュニケーション手段を突き止め、作成日を答える課題です。これまでの調査で、FishingAppの作者のコードネームはMikeであることがわかっています。
+This challenge involves identifying the communication channel used by APT-509 besides the FishingApp and providing its creation date. 
+Previous investigations revealed that the codename of the FishingApp's creator is Mike.
 
 ```bash
 $ grep -r 'Mike' com.hackosint.myapplication
@@ -82,9 +72,9 @@ com.hackosint.myapplication/smali_classes2/com/hackosint/myapplication/
 MainActivityKt.smali:    const-string v10, "Mikee"
 ```
 
-有望なsmaliファイルがヒットしました。smaliファイルはAndroidアプリケーションで用いられるバイトコードを人間でも読めるようにしたものです。ヒットした部分の周辺を見てみると、チャットの記録がそのまま書かれているように見えます。
+A promising smali file was found. Smali files are a human-readable representation of the bytecode used in Android applications. Examining the surroundings of the match shows that a chat log is written directly.
 
-```smali:MainActivityKt.smali
+```smali
     .line 848
     new-instance v4, Lcom/hackosint/myapplication/ChatMessage;
 
@@ -105,7 +95,7 @@ MainActivityKt.smali:    const-string v10, "Mikee"
     aput-object v4, v3, v6
 ```
 
-チャットは長くないためそのまま読んでも良いですし、ChatGPTに渡してさらに見やすい形式に変えてもらうこともできます。
+Since the chat log is short, you can read it as is or pass it to ChatGPT to convert it into a more readable format.
 
 | ID | user  | nickname  | message                                                                                        | time  |
 |----|-------|-----------|------------------------------------------------------------------------------------------------|-------|
@@ -115,14 +105,14 @@ MainActivityKt.smali:    const-string v10, "Mikee"
 | 4  | user3 | n0vember  | J'essaye de rejoindre au plus vite merci!                                                      | 10:37 |
 | 5  | user3 | n0vember  | T'as pu rejoindre grâce à une super guide :)                                                   | 10:42 |
 
-通信手段はAPT-509TMPという名前のようです。これはTelegramのグループ名ではないかと想像され、実際 t.me/APT509TMP にアクセスできました。
+It seems that the communication channel is named APT-509TMP. This appears to be a Telegram group name, and indeed t.me/APT509TMP is accessible.
 
 ![](/images/hack-osint-2025-android/apt509tmp.png)
 
-Telegramのメッセージの先頭は4月26日の2:51に投稿されていました。
+The first Telegram message was posted at 2:51 on April 26.
 
 ![](/images/hack-osint-2025-android/telegram.png)
 
-しかし、私たちのチームは日本（UTC+9）にいましたが、これはフランスのCTFなので、現地の時間では4月25日だと考えるのがより適切です。
+While our team was in Japan (UTC+9), since this is a French CTF, it is more appropriate to consider the local time (UTC+2).
 
 flag: `25/04/2025`
