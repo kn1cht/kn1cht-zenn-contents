@@ -6,7 +6,7 @@ topics:
   - OSINT
   - CTF
   - writeup
-published: true
+published: false
 ---
 
 Team KAKITSUBATAによるDIVER OSINT CTF 2025のWriteupです。
