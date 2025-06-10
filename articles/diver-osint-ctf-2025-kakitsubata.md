@@ -1,5 +1,5 @@
 ---
-title: "[KAKITSUBATA] Diver OSINT CTF 2025 Writeup"
+title: "[KAKITSUBATA] DIVER OSINT CTF 2025 Writeup"
 emoji: "🤿"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics:
