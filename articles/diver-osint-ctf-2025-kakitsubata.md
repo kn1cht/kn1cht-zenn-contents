@@ -1541,7 +1541,7 @@ https://etendering.tenderboard.gov.om/product/nitParameterView?mode=public&tende
 
 個人名のため省略
 
-## expense [Тамияс] (499pt / 13 solves)
+## expense [nomizou -> Тамияс] (499pt / 13 solves)
 
 ### 問題
 
@@ -1869,4 +1869,8 @@ medium難易度の問題を完答したら開放されることが事前にア�
 
 結果は300点満点の200点。部分点があるのはありがたいですね。レポートのまとめ自体がギリギリになり、最後の結論の部分で調べが足りない部分があるなあと思いながら提出したので納得の結果です。
 
-本問の調査はそれだけで普通の問題数問分くらいの分量になるため、本記事では過程や回答を取り扱いません（今後公開するかもしれません）。皆さんもぜひ調べてみてください！
+### 提出したレポート
+[KAKITSUBATA_unknown_aircraft.pdf](https://github.com/kn1cht/kn1cht-zenn-contents/tree/main/images/diver-osint-ctf-2025-kakitsubata/KAKITSUBATA_unknown_aircraft.pdf)
+（PDFファイル）
+
+本問の調査はそれだけで普通の問題数問分くらいの分量になるため、本記事では調査過程を取り扱いません（今後公開するかもしれません）。皆さんもぜひ調べてみてください！
