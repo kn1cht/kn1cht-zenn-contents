@@ -658,7 +658,7 @@ Google Earth Proでしつこく過去年代写真を確認（真ん中の区画�
 *2016/5/31の航空写真 （出典：GoogleEarth）*
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/what3slashes_earth2.jpg =450x)
-*{2016/9/13の航空写真。正面左に家がたつ。  （出典：GoogleEarth）}*
+*2016/9/13の航空写真。正面左に家がたつ。  （出典：GoogleEarth）*
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/what3slashes_earth2.jpg =450x)
 *2018/10/2の航空写真。正面右に家が建設中になる。  （出典：GoogleEarth）*
