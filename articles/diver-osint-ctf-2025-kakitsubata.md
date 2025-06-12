@@ -149,12 +149,12 @@ Flag Format: Diver25{RJTT}
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/flight_from.jpg)
 
-OKOは横田基地にある飛行場のことであり、wikipediaで確認したICAOレコード「RJTY」を提出するも不正解。
-wikipediaの記載が間違っているのかと思い、他の資料もチェックしたがICAOレコードに間違いはなさそうだった。
+OKOは横田基地にある飛行場のことであり、Wikipediaで確認したICAOレコード「RJTY」を提出するも不正解。
+Wikipediaの記載が間違っているのかと思い他の資料もチェックしたが、ICAOレコードに間違いはなさそうだった。
 
 ここで「データを入念に確認してください。」というヒントを思い出す。「本当にOKOから出発しているのか？」と思い飛行機の軌跡を辿ると、立川駅付近から飛んでいることがわかる。
 
-wikipediaから日本の空港のICAOレコード一覧のリストを見つけ、その中を「立川」で検索してヒットしたものが正解だった。
+Wikipediaから日本の空港のICAOレコード一覧のリストを見つけ、その中を「立川」で検索してヒットしたものが正解だった。
 
 https://ja.wikipedia.org/wiki/ICAO%E7%A9%BA%E6%B8%AF%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E4%B8%80%E8%A6%A7/R
 
@@ -697,7 +697,7 @@ https://overpass-turbo.eu/
 Claudeに手伝ってもらいつつクエリを作成する。
 工夫した点は以下の2つ。
 
-1. nodeやwayではなくnwrで検索する: OpenStreetMapにはnode, way, relationという3つの要素で構成されており、nwrを指定することですべての要素を検索できる。(`node["shop"="convenience"]`のように指定すると抜けが発生する可能性がある)
+1. nodeやwayではなくnwrで検索する: OpenStreetMapはnode, way, relationという3つの要素で構成されており、nwrを指定することですべての要素を検索できる。(`node["shop"="convenience"]`のように指定すると抜けが発生する可能性がある)
 
 2. 「公園・コンビニ・スーパー間の距離が100m以内」という条件を分解する: 愚直に書くとクエリが複雑になるため、「100m以内にコンビニとスーパーがある公園」と「100m以内にスーパーがあるコンビニ」を調べ、円が重なるところを特定するようにした。
 
@@ -1107,7 +1107,7 @@ https://x.com/kodai_sn/status/1931143317099819175
 
 [kn1cht] GitHubやGiteaのリポジトリにはこれまで回答に使用していないものが多数あり、それらを使用するのではないかと考えていました。[kodai-sn.github.io](http://kodai-sn.github.io)のコミットログには2種類のメールアドレス（`kodaisn.development@gmail.com`, `shinonomekodai@gmail.com`）があるものの、それらのGoogle検索や [haveibeenpwned.com](http://haveibeenpwned.com) 等のパスワード流出チェックツールではいずれも情報がヒットしませんでした。
 
-そうこうしているうちに、kuzushikiさんが「pastebinにあったよ～」と教えてくださり、そこにパスワードが載っていたためそのまま正解になりました。そもそもpastebinに触れてなさすぎて、ログインするとpastebinの中で検索ができるのを知らなかった……。
+そうこうしているうちに、kuzushikiさんが「Pastebinにあったよ～」と教えてくださり、そこにパスワードが載っていたためそのまま正解になりました。そもそもPastebinに触れてなさすぎて、ログインするとPastebinの中で検索ができるのを知らなかった……。
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/06_leaked.png)
 
@@ -1272,7 +1272,7 @@ Flag Format: Diver25{Kyoto Station}
 
 - JR東日本
 - 15番線
-- 14:16分発
+- 14:16発
 - 普通 久里浜行き
 
 15番線で横須賀線が通る駅、という条件で色々調べると品川駅がヒットする。その後時刻表から14:16発の電車があることも確認でき、確信を持てたので提出したところ正解だった。
@@ -1304,8 +1304,8 @@ Flag Format: Diver25{Kyoto Station}
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/platform.jpg =350x)
 
-まず、オレンジ色の車両表示から中央線（もしくは青梅線）のホームだと推測できる。
-次に「らいと」という看板が特徴的だと思い、「らいと＋駅名」で調べていくと牛浜駅がヒットした。
+まず、オレンジ色の車両表示から中央線（もしくは青梅線）のホームだと推測した。
+次に「らいと」という看板が特徴的だと思い、Google Map上で駅付近に移動してから「らいと」で検索していくと牛浜駅がヒットした。
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/platform_ushihama.jpg =450x)
 
@@ -1332,9 +1332,9 @@ https://www.vesselfinder.com/?imo=9179842
 しかし「2024/10/25にどこに停泊していたか」という肝心な情報がなかなか見つからず苦戦した。
 [Marine Traffic](https://www.marinetraffic.com/en/ais/home/centerx:-12.0/centery:25.0/zoom:4) を始めとした船の停泊履歴を確認できるサイトを巡回し、また10/25時点のアーカイブが残っていないかを[Wayback   Machine](https://web.archive.org/) などのアーカイブサービスで確認したが全く見当たらなかった。
 
-ここで方針を変え、どこかの調査レポートなどに載っているのではないかと推測し、片っ端からそれらしいレポートを探していく。
+ここで方針を変え、どこかの調査レポートなどに情報が載っているのではないかと推測し、片っ端からそれらしいレポートを探していく。
 
-最終的に以下のレポートの18ページ目に2024/10/25のANGARAの衛星画像が載っているのを発見した。
+最終的に以下のレポートの18ページ目にて、2024/10/25のANGARAの衛星画像を発見した。
 
 https://www.mofa.go.jp/files/100853978.pdf
 
@@ -1531,7 +1531,7 @@ https://etendering.tenderboard.gov.om/product/nitParameterView?mode=public&tende
 
 このサイトのトップページにアクセスして日本語に翻訳すると「入札者とベンダー」という見出しがあったため、入札情報の詳細を確認できそうだと推測。
 
-サイトを巡回して機能を一つずつ確認していくと、当該入札 (入札No. 1190/2023/MAFWR/DGAWRDK-94- Recall \- 1) の結果が見つかった。
+サイトを巡回して機能を一つずつ確認していくと、入札情報の検索画面に辿り着く。入札No. 1190/2023/MAFWR/DGAWRDK-94- Recall \- 1で検索したところ、当該入札の詳細情報が見つかった。
 
 ![](/images/diver-osint-ctf-2025-kakitsubata/bid.png)
 
@@ -1611,9 +1611,8 @@ https://fcc.report/
 
 https://fcc.report/FCC-ID/APYHRO00240/
 
-レポートの数が多く一つずつ見ていくのは厳しいと思い、Document TypeがTest Reportのものに絞って見ていく。
-EMI試験に関する物が見つかり、シリアル番号もそこに記載されていた。
-
+レポートの数が多いため一つずつ見ていくのは厳しい。ここでDocument Typeが複数あることに気づき、Test Reportのものに絞って確認することとした。
+最終的にEMI試験に関するレポートが見つかり、シリアル番号もそこに記載されていた。
 https://fcc.report/FCC-ID/APYHRO00240/3109241
 
 
