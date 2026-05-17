@@ -21,6 +21,9 @@ NDIAS Automotive/IoT CTF 2026のWriteupです。
 * 点数は各問題の正答数に応じて減少するDynamic方式。
 
 # Writeups
+Team 40548F+として、zackey-heuristicsさん, ryo-aさん, kn1chtの3名で参加しました。
+Tiny crackme以外に正答し、4706 ポイント・14位でした。
+
 筆者が正答したOSINT, Keyfob, RFカテゴリの問題のWriteupです。
 
 見出しに示した点数は、CTF終了後のものです。
