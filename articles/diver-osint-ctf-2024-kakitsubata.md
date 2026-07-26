@@ -3,6 +3,7 @@ title: "[KAKITSUBATA] Diver OSINT CTF 2024 Writeup"
 emoji: "🤿"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics:
+  - diverosintctf
   - OSINT
   - CTF
   - writeup

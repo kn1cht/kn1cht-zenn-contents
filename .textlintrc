@@ -4,12 +4,12 @@
     "ja-hiragana-fukushi": true,
     "ja-hiragana-hojodoushi": true,
     "no-mixed-zenkaku-and-hankaku-alphabet": true,
-    "preset-ja-spacing": true,
     "preset-ja-technical-writing": {
       "max-kanji-continuous-len": {
-        max: 8,
+        max: 20,
         allow: ["倍精度浮動小数点数"]
       },
+      "max-comma": false,
       "ja-no-redundant-expression" : {
         allows : [
           "/^分析を行[ぁ-ん]/",
