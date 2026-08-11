@@ -15,12 +15,12 @@ published: true
 # 開催概要・制度
 * 2026年7月25日12:10 JSTから7月26日12:10 JST（24時間）
 * Jeopardy方式
-* 問題数：62問
+* 問題数：52問
 * チーム制、6人まで
 * 点数は各問題の正答数に応じて減少するDynamic方式
 
 # Writeups
-Team 40548Fとして、blackwasanさんとkn1chtの3名で参加した。10244 pointsを取得し、24位となった。
+Team 40548Fとして、blackwasanさんとkn1chtの2名で参加した。10244 pointsを取得し、24位となった。
 
 ![チームの結果。10244 pointsを取得し、24位。](/images/diver-osint-ctf-2026-kn1cht/40548f.png)
 
